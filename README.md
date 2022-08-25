@@ -3,6 +3,7 @@
 [ ![Download](https://api.bintray.com/packages/tonyofrancis/maven/fetch2/images/download.svg?version=3.0.12) ](https://bintray.com/tonyofrancis/maven/fetch2/3.0.12/link)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20Networking-blue.svg?style=flat)](https://android-arsenal.com/details/1/5196)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/tonyofrancis/Fetch/blob/master/LICENSE)
+[![](https://jitpack.io/v/samanaslani1992/Fetch.svg)](https://jitpack.io/#samanaslani1992/Fetch)
 
 ![ScreenShot](https://github.com/tonyofrancis/Fetch/blob/v2/full_logo.png)
 
