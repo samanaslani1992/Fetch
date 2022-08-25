@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.tonyodev.fetch2.Download;
 import com.tonyodev.fetch2.Error;
 import com.tonyodev.fetch2.Fetch;
+import com.tonyodev.fetch2.FetchConfiguration;
 import com.tonyodev.fetch2.Request;
 import com.tonyodev.fetch2.Status;
 import com.tonyodev.fetch2core.Extras;
@@ -21,9 +22,14 @@ import com.tonyodev.fetch2core.FetchObserver;
 import com.tonyodev.fetch2core.Func;
 import com.tonyodev.fetch2core.MutableExtras;
 import com.tonyodev.fetch2core.Reason;
+import com.tonyodev.fetch2okhttp.OkHttpDownloader;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+
+import okhttp3.OkHttpClient;
 import timber.log.Timber;
 
 
@@ -48,7 +54,23 @@ public class SingleDownloadActivity extends AppCompatActivity implements FetchOb
         titleTextView = findViewById(R.id.titleTextView);
         etaTextView = findViewById(R.id.etaTextView);
         downloadSpeedTextView = findViewById(R.id.downloadSpeedTextView);
-        fetch = Fetch.Impl.getDefaultInstance();
+
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .proxy(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("89.45.52.93", 1080)))
+                .proxy(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("89.45.52.134", 1080)))
+                .proxy(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("64:ff9b::592d:345d", 1080)))
+                .proxy(new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("64:ff9b::592d:3486", 1080)))
+                .proxy(Proxy.NO_PROXY)
+                .build();
+
+        FetchConfiguration fetchConfiguration = new FetchConfiguration.Builder(this)
+                .setDownloadConcurrentLimit(3)
+                .setHttpDownloader(new OkHttpDownloader(okHttpClient))
+                .build();
+
+
+        fetch = Fetch.Impl.getInstance(fetchConfiguration);
         checkStoragePermission();
     }
 
@@ -121,7 +143,7 @@ public class SingleDownloadActivity extends AppCompatActivity implements FetchOb
         extras.putBoolean("testBoolean", true);
         extras.putString("testString", "test");
         extras.putFloat("testFloat", Float.MIN_VALUE);
-        extras.putDouble("testDouble",Double.MIN_VALUE);
+        extras.putDouble("testDouble", Double.MIN_VALUE);
         extras.putInt("testInt", Integer.MAX_VALUE);
         extras.putLong("testLong", Long.MAX_VALUE);
         return extras;

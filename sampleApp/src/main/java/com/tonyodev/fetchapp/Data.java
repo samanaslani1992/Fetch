@@ -15,7 +15,7 @@ import java.util.List;
 public final class Data {
 
     public static final String[] sampleUrls = new String[]{
-            "http://speedtest.ftp.otenet.gr/files/test100Mb.db",
+            "https://dl2.soft98.ir/mac/KMPlayer.0.3.2.Mac.zip?1661448271",
             "https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.avi",
             "http://media.mongodb.org/zips.json",
             "http://www.exampletonyotest/some/unknown/123/Errorlink.txt",
